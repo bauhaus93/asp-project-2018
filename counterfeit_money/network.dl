@@ -1,0 +1,50 @@
+m(m1).
+m(m2).
+w(w1).
+w(w2).
+c(c1).
+
+s1(m1, M) :- d1(M), not ab(m1).
+s2(m1, M) :- d2(M), not ab(m1).
+
+s1(m2, M) :- t(m1, M), not ab(m2).
+s2(m2, M) :- d3(M), not ab(m2).
+
+s1(w1, M) :- t(m1, M), not ab(w1).
+s2(w1, M) :- d3(M), not ab(w1).
+
+s1(w2, M) :- d1(M), not ab(w2).
+s2(w2, M) :- d2(M), not ab(w2).
+
+s1(c1, M) :- t(w1, M), not ab(c1).
+s2(c1, M) :- t(w2, M), not ab(c1).
+
+d4(M) :- t(m2, M), not ab(m2).
+d5(M) :- t(c1, M), not ab(c1).
+
+xor(A, B, 0) :- #int(A), #int(B), A <= 1, B <= 1, A = B.
+xor(A, B, 1) :- #int(A), #int(B), A <= 1, B <= 1, A != B.
+or(A, B, 0) :- #int(A), #int(B), A <= 1, B <= 1, A = 0, B = 0.
+or(A, B, 1) :- #int(A), #int(B), A <= 1, B <= 1, A > 0.
+or(A, B, 1) :- #int(A), #int(B), A <= 1, B <= 1, B > 0.
+and(A, B, 0) :- #int(A), #int(B), A <= 1, B <= 1, A = 0.
+and(A, B, 0) :- #int(A), #int(B), A <= 1, B <= 1, B = 0.
+and(A, B, 1) :- #int(A), #int(B), A <= 1, B <= 1, A = 1, B = 1.           
+
+t(S, M) :- m(S),
+           s1(S, I1),
+           s2(S, I2),
+           xor(I1, I2, M),
+           not ab(S).
+
+t(S, M) :- w(S),
+           s1(S, I1),
+           s2(S, I2),
+           and(I1, I2, M),
+           not ab(S).
+
+t(S, M) :- c(S),
+           s1(S, I1),
+           s2(S, I2),
+           or(I1, I2, M),
+           not ab(S).

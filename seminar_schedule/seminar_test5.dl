@@ -1,0 +1,5 @@
+before(1, 2).
+nextto(1, 2).
+seminar(s1, 1, 1). seminar(s1, 1, 2). seminar(s1, 2, 1). seminar(s1, 2, 2).
+reservationsPerDay(1,1). reservationsPerDay(2,1).
+reservationsPerRoom(1,1). reservationsPerRoom(2,1).

@@ -1,0 +1,1 @@
+reserved(D, R) v -reserved(D, R) :- seminar(S, D, R).

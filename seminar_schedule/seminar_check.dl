@@ -1,0 +1,7 @@
+%exclude solutions where reserve count/day does not match reservations.
+:-  reservationsPerDay(X, C),
+    not #count{Y: reserved(X, Y)} = C.
+
+%exclude solutions where reserve count/room does not match reservations.
+:- reservationsPerRoom(Y, C),
+   not #count{X: reserved(X, Y)} = C. 
